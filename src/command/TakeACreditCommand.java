@@ -8,12 +8,13 @@ import java.util.Scanner;
 
 public class TakeACreditCommand extends Command
 {
-    //    public int mou;
     private final Scanner scanner = new Scanner(System.in);
     private double money;
     public TakeACreditCommand(AllCredits allCredits){
         this.allCredits=allCredits;
     }
+    double vidsotki;
+    int term;
 
     @Override
     public void execute()
@@ -24,7 +25,6 @@ public class TakeACreditCommand extends Command
         scanner.nextLine();
         System.out.println("Введіть мету, для якої ви берете кредит");
         String purpose = scanner.nextLine();
-
         for (Credit credit : this.allCredits.getCredits()){
             if(money> credit.getMinSumOfCredit()
                     &&money< credit.getMaxSumOfCredit()
@@ -33,14 +33,13 @@ public class TakeACreditCommand extends Command
                 list.add(credit);
             }
         }
-
         if (list.size() == 0){
             System.out.println("Для вас не знайдено відповідного кредиту");
             return;
         }
 
         System.out.println("Кредит для вас:");
-        int i=1;
+        int i = 1;
         for (Credit credit: list)
         {
             System.out.print(i + ") ");
@@ -58,8 +57,12 @@ public class TakeACreditCommand extends Command
         TakeCredit(list.get(select - 1));
 
     }
-    double vidsotki;
-    int term;
+
+    @Override
+    public String getDesk() {
+        return  "Взяти кредит ";
+    }
+
     private void TakeCredit(Credit credit)
     {
         System.out.printf("Виберете кредит у %s банку \n", credit.getBankName());
@@ -79,13 +82,13 @@ public class TakeACreditCommand extends Command
         int chose = scanner.nextInt();
         switch (chose)
         {
-            case 1-> Load(credit);
-            case 2-> AddingMoney(credit);
+            case 1-> loan(credit);
+            case 2-> addingMoney(credit);
             case 3-> System.out.println("Вітаємо, кредит отримано");
         }
 
     }
-    public void Load(Credit credit){
+    public void loan(Credit credit){
         int month;
         int mou;
         System.out.println("Вказати на скільки місяців була попередня позика");
@@ -98,7 +101,7 @@ public class TakeACreditCommand extends Command
                 money+(((credit.getInterestRate()+10.0) * money*(r)/12)/100),(money+(((credit.getInterestRate()+10.0) * money*(r)/12)/100))/(r));
         System.out.println();
     }
-    private void AddingMoney(Credit credit){
+    private void addingMoney(Credit credit){
         int month;
         int extra;// сума
         System.out.println("Виберіть, через який місяць ви хочете збільшити суму");

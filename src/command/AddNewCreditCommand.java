@@ -5,7 +5,6 @@ import credit.Credit;
 
 import java.util.Scanner;
 
-
     public class AddNewCreditCommand extends Command
     {
         public AddNewCreditCommand(AllCredits allCredits){
@@ -35,6 +34,11 @@ import java.util.Scanner;
             this.allCredits.getCredits().add(new Credit(bankName, thePurposeOfTheCredit, minTermOfCredit,
                     maxTermOfCredit, minSumOfCredit, maxSumOfCredit, interestRate));
 
+        }
+
+        @Override
+        public String getDesk() {
+            return  "Додати новий кредит ";
         }
     }
 

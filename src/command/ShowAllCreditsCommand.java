@@ -14,5 +14,9 @@ public class ShowAllCreditsCommand extends Command {
             System.out.println(credit);
         }
     }
-}
 
+    @Override
+    public String getDesk() {
+        return "Показати всі кредити ";
+    }
+}

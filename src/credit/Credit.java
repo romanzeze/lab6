@@ -1,6 +1,4 @@
 package credit;
-
-
 public class Credit extends AllCredits {
         private String bankName;
         private String thePurposeOfTheCredit;

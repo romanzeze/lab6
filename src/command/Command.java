@@ -5,4 +5,5 @@ import credit.AllCredits;
 public abstract class Command {
         AllCredits allCredits;
         public abstract void execute();
-    }
+        public abstract String getDesk();
+}
